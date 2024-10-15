@@ -58,7 +58,7 @@ const resolvers = {
     },
 
     comments: async ({ email }, args, { mongo }) =>
-      await mongo.comments.find({ email }),
+      await mongo.comments.find({ email }).limit(20),
   },
 
   Mutation: {
