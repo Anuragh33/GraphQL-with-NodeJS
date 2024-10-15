@@ -13,6 +13,8 @@ const typeDefs = /* GraphQL */ `
     id: ID!
     name: String
     email: String
+
+    comments: [Comment]
   }
 
   input newUserInput {
@@ -54,6 +56,9 @@ const resolvers = {
     name: (obj) => {
       return obj.name?.toUpperCase()
     },
+
+    comments: async ({ email }, args, { mongo }) =>
+      await mongo.comments.find({ email }),
   },
 
   Mutation: {
